@@ -39,18 +39,23 @@
 
 fun solution(A: IntArray, K: Int): IntArray {
     // write your code in Kotlin 1.3.11 (Linux)
-    val result = IntArray(A.size)
+    var result = IntArray(A.size)
 
-    var shift = 0
+    if (K == 0) {
+        result = A.clone()
+    }
+
     for (j in 0 until K) {
         A.forEachIndexed { index, i ->
-            shift = index + j +1
+            var shift = index + j%A.size +1
+
             if (shift >= A.size) {
                 shift -= A.size
             }
             result[shift] = i
         }
     }
+
 
     return result
 }
